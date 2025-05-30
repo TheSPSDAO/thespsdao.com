@@ -1,625 +1,493 @@
 ---
 import bg from "../assets/bg.jpeg";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SPS DAO - Splinterlands Governance</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="icon" type="image/png" href="favicon.png" />
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-      <div class="container">
-        <div class="logo">
-          <h1>SPS DAO</h1>
-        </div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#governance">Governance</a></li>
-          <!-- Hidden sections
-                <li><a href="#treasury">Treasury</a></li>
-                <li><a href="#proposals">Proposals</a></li>
-                -->
-          <li><a href="#token">Token</a></li>
-          <li><a href="#resources">Resources</a></li>
-        </ul>
-        <div class="hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header id="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>
-            Decentralized Governance for <span class="highlight"
-              >Splinterlands</span
-            >
-          </h1>
-          <p>
-            SPS DAO empowers the community to shape the future of the
-            Splinterlands ecosystem
-          </p>
-          <div class="hero-buttons">
-            <a
-              href="https://splinterlands.com"
-              class="btn primary"
-              target="_blank">Play Splinterlands</a
-            >
-            <a href="#governance" class="btn secondary"
-              >Learn About Governance</a
-            >
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about">
-      <div class="container">
-        <div class="section-header">
-          <h2>About <span class="highlight">SPS DAO</span></h2>
-          <p>
-            Decentralized Autonomous Organization for the Splinterlands
-            ecosystem
-          </p>
-        </div>
-        <div class="content-flex">
-          <div class="content-text">
-            <p>
-              The SPS token and all related tokens and smart contracts are set
-              up as a Decentralized Autonomous Organization (DAO). All decisions
-              relating to the token and related assets or contracts are decided
-              via votes of all staked SPS token holders, with the weight of the
-              votes being determined by the amount of staked SPS tokens held in
-              each participating wallet.
-            </p>
-            <p>
-              The DAO is able to hold, send, and receive cryptocurrency which
-              allows it to sell products and pay for services at the direction
-              of the token holders. All of the funds owned by the DAO, including
-              those from the SPS private token sale, token emissions that go
-              towards the DAO, and proceeds from product sales on behalf of the
-              DAO (e.g. LICENSE tokens and Riftwatchers packs), are currently
-              held in DAO multisig wallets that are controlled by DAO elected
-              Treasurers.
-            </p>
-            <h3>SPS Foundation</h3>
-            <p>
-              The SPS Foundation is a Panama-based Private Interest Foundation
-              owned and operated by a board of DAO elected representatives. The
-              purpose of the SPS Foundation is to represent and carry out the
-              will of the SPS DAO and to bridge the gap between the
-              decentralized, blockchain-based structure of the DAO and
-              traditional legal and regulatory systems.
-            </p>
-          </div>
-          <div class="about-cards">
-            <div class="card">
-              <i class="fas fa-vote-yea"></i>
-              <h3>Community Governance</h3>
-              <p>
-                All staked SPS holders can vote on proposals and help shape the
-                future of Splinterlands.
-              </p>
-            </div>
-            <div class="card">
-              <i class="fas fa-coins"></i>
-              <h3>Treasury Management</h3>
-              <p>
-                The DAO manages a substantial treasury with elected Treasurers
-                who oversee fund allocation.
-              </p>
-            </div>
-            <div class="card">
-              <i class="fas fa-project-diagram"></i>
-              <h3>Ecosystem Development</h3>
-              <p>
-                Funding new features, partnerships, and initiatives to grow the
-                Splinterlands ecosystem.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Token Section -->
-    <section id="token">
-      <div class="container">
-        <div class="section-header">
-          <h2>The <span class="highlight">SPS Token</span></h2>
-          <p>
-            Splintershards - The governance token of the Splinterlands ecosystem
-          </p>
-        </div>
-        <div class="token-grid">
-          <div class="token-info">
-            <h3>Token Utility</h3>
-            <ul>
-              <li>
-                <i class="fas fa-check-circle"></i> Governance voting rights
-              </li>
-              <li><i class="fas fa-check-circle"></i> Staking rewards</li>
-              <li>
-                <i class="fas fa-check-circle"></i> Access to VOUCHER tokens
-              </li>
-              <li>
-                <i class="fas fa-check-circle"></i> Validator node operations
-              </li>
-              <li><i class="fas fa-check-circle"></i> Play-to-earn rewards</li>
-            </ul>
-            <div class="token-stats">
-              <div class="stat-item">
-                <h4>Max Supply</h4>
-                <p>3,000,000,000</p>
-              </div>
-              <div class="stat-item">
-                <h4>Current Circulating</h4>
-                <p>~1,950,000,000</p>
-              </div>
-            </div>
-          </div>
-          <div class="token-distribution">
-            <h3>Token Distribution</h3>
-            <div class="chart-container">
-              <canvas id="distributionChart"></canvas>
-            </div>
-            <div class="distribution-legend">
-              <div class="legend-item">
-                <span class="color-box" style="background-color: #FF6384;"
-                ></span>
-                <p>Play to Earn (30%) - 900M</p>
-              </div>
-              <div class="legend-item">
-                <span class="color-box" style="background-color: #36A2EB;"
-                ></span>
-                <p>Staking/LP/Oracle (30%) - 900M</p>
-              </div>
-              <div class="legend-item">
-                <span class="color-box" style="background-color: #FFCE56;"
-                ></span>
-                <p>Airdrop (13.33%) - 400M</p>
-              </div>
-              <div class="legend-item">
-                <span class="color-box" style="background-color: #4BC0C0;"
-                ></span>
-                <p>Foundation/DAO (10%) - 300M</p>
-              </div>
-              <div class="legend-item">
-                <span class="color-box" style="background-color: #9966FF;"
-                ></span>
-                <p>Unallocated (9%) - 270M</p>
-              </div>
-              <div class="legend-item">
-                <span class="color-box" style="background-color: #FF9F40;"
-                ></span>
-                <p>Private Sale (6.66%) - 200M</p>
-              </div>
-              <div class="legend-item">
-                <span class="color-box" style="background-color: #C9CBCF;"
-                ></span>
-                <p>Partners/Advisors (1%) - 30M</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Governance Section -->
-    <section id="governance">
-      <div class="container">
-        <div class="section-header">
-          <h2>DAO <span class="highlight">Governance</span></h2>
-          <p>How decisions are made in the SPS DAO</p>
-        </div>
-        <div class="governance-process">
-          <div class="process-step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h3>Pre-Voting Phase</h3>
-              <p>
-                Anyone can submit a governance proposal by publishing a post on
-                the Hive blockchain with #spsproposal as the first tag. A fee of
-                100,000 DEC tokens must be burned to submit a proposal.
-              </p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h3>Formal Voting Phase</h3>
-              <p>
-                Valid proposals move to the formal voting phase where staked SPS
-                token holders can vote. Voting power is proportional to the
-                amount of SPS staked.
-              </p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h3>Proposal Implementation</h3>
-              <p>
-                If a proposal passes, the SPS DAO Treasurers execute the
-                approved transactions or actions according to the proposal
-                specifications.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="governance-topics">
-          <h3>Common Proposal Topics</h3>
-          <div class="topics-grid">
-            <div class="topic-card">
-              <i class="fas fa-chart-line"></i>
-              <h4>Treasury Allocation</h4>
-              <p>
-                How to allocate treasury funds for development, marketing, and
-                other initiatives.
-              </p>
-            </div>
-            <div class="topic-card">
-              <i class="fas fa-handshake"></i>
-              <h4>Partnerships</h4>
-              <p>
-                Evaluating and approving strategic partnerships with other
-                projects or companies.
-              </p>
-            </div>
-            <div class="topic-card">
-              <i class="fas fa-cogs"></i>
-              <h4>Protocol Updates</h4>
-              <p>
-                Changes to the SPS token mechanics, reward systems, or
-                governance processes.
-              </p>
-            </div>
-            <div class="topic-card">
-              <i class="fas fa-users"></i>
-              <h4>Community Initiatives</h4>
-              <p>
-                Funding for community-led projects, events, or marketing
-                activities.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Treasury Section -->
-    <section id="treasury">
-      <div class="container">
-        <div class="section-header">
-          <h2>DAO <span class="highlight">Treasury</span></h2>
-          <p>Transparent management of community assets</p>
-        </div>
-        <div class="treasury-highlight">
-          <div class="treasury-total">
-            <h3>Total Treasury Value</h3>
-            <p class="treasury-value">$6,386,899</p>
-            <p class="treasury-date">As of April 2025</p>
-          </div>
-          <div class="treasury-allocation">
-            <h3>Key Holdings</h3>
-            <div class="allocation-grid">
-              <div class="allocation-item">
-                <h4>SPS</h4>
-                <p>586,466,300 tokens</p>
-                <p class="allocation-value">$4,180,204</p>
-              </div>
-              <div class="allocation-item">
-                <h4>DEC</h4>
-                <p>1.47B tokens</p>
-                <p class="allocation-value">$1,311,383</p>
-              </div>
-              <div class="allocation-item">
-                <h4>HIVE Power</h4>
-                <p>1.13M HP</p>
-                <p class="allocation-value">$270,324</p>
-              </div>
-              <div class="allocation-item">
-                <h4>RIFT</h4>
-                <p>204,089 tokens</p>
-                <p class="allocation-value">$439,264</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="treasury-usage">
-          <h3>How Treasury Funds Can Be Used</h3>
-          <div class="usage-grid">
-            <div class="usage-card">
-              <i class="fas fa-water"></i>
-              <h4>Providing Liquidity</h4>
-              <p>
-                Token holders may vote to use foundation tokens to provide
-                liquidity for the SPS token on third-party markets.
-              </p>
-            </div>
-            <div class="usage-card">
-              <i class="fas fa-server"></i>
-              <h4>Paying for Services</h4>
-              <p>
-                Funds can be used to pay for services like exchange listings,
-                marketing, or promotional activities.
-              </p>
-            </div>
-            <div class="usage-card">
-              <i class="fas fa-code"></i>
-              <h4>Funding Development</h4>
-              <p>
-                Supporting third-party development of tools and services that
-                add value to the Splinterlands ecosystem.
-              </p>
-            </div>
-            <div class="usage-card">
-              <i class="fas fa-search-dollar"></i>
-              <h4>Investments</h4>
-              <p>
-                Investing in other assets or tokens to earn returns and help
-                sustain the foundation long-term.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Proposals Section -->
-    <section id="proposals">
-      <div class="container">
-        <div class="section-header">
-          <h2>Active <span class="highlight">Proposals</span></h2>
-          <p>Current proposals under consideration by the community</p>
-        </div>
-        <div class="proposals-list">
-          <div class="proposal-card">
-            <div class="proposal-status active">Active</div>
-            <h3>Reduce SPS to DEC Conversion Fee</h3>
-            <p>
-              A proposal to reduce the conversion fee when swapping SPS tokens
-              to DEC tokens to encourage more economic activity.
-            </p>
-            <div class="proposal-meta">
-              <span
-                ><i class="fas fa-calendar"></i> Voting ends: May 10, 2025</span
-              >
-              <span><i class="fas fa-user"></i> Proposed by: clayboyn</span>
-            </div>
-            <a
-              href="https://www.waivio.com/@clayboyn/sps-governance-proposal-reduce-sps-to-dec-conversion-fee"
-              class="btn secondary"
-              target="_blank">View Details</a
-            >
-          </div>
-          <div class="proposal-card">
-            <div class="proposal-status active">Active</div>
-            <h3>Stop SPS:BNB Pool Incentives</h3>
-            <p>
-              A proposal to reallocate the rewards currently being distributed
-              to the SPS:BNB liquidity pool to other programs.
-            </p>
-            <div class="proposal-meta">
-              <span
-                ><i class="fas fa-calendar"></i> Voting ends: May 8, 2025</span
-              >
-              <span><i class="fas fa-user"></i> Proposed by: clayboyn</span>
-            </div>
-            <a
-              href="https://www.waivio.com/@clayboyn/sps-governance-proposal-stop-sps-bnb-pool-incentives"
-              class="btn secondary"
-              target="_blank">View Details</a
-            >
-          </div>
-          <div class="proposal-card">
-            <div class="proposal-status completed">Completed</div>
-            <h3>Guidelines for Treasurers</h3>
-            <p>
-              Standard guidelines that the SPS DAO Treasurers will follow when
-              executing transactions on behalf of the SPS DAO.
-            </p>
-            <div class="proposal-meta">
-              <span
-                ><i class="fas fa-calendar"></i> Completed: April 15, 2025</span
-              >
-              <span><i class="fas fa-user"></i> Proposed by: clayboyn</span>
-            </div>
-            <a
-              href="https://www.waivio.com/@clayboyn/sps-governance-proposal-guidelines-for-treasurers"
-              class="btn secondary"
-              target="_blank">View Details</a
-            >
-          </div>
-        </div>
-        <div class="proposals-cta">
-          <h3>Have an idea to improve Splinterlands?</h3>
-          <p>
-            Anyone can submit a governance proposal for consideration by the
-            community.
-          </p>
-          <a
-            href="https://sps.splinterlands.com/in-game-governance"
-            class="btn primary"
-            target="_blank">Learn How to Submit a Proposal</a
+<Layout>
+  <!-- Hero Section -->
+  <header id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>
+          Decentralized Governance for <span class="highlight"
+            >Splinterlands</span
           >
-        </div>
-      </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section id="resources">
-      <div class="container">
-        <div class="section-header">
-          <h2>DAO <span class="highlight">Resources</span></h2>
-          <p>Essential links and documentation for the SPS DAO</p>
-        </div>
-        <div class="resources-grid">
-          <a
-            href="https://sps.splinterlands.com/"
-            class="resource-card"
-            target="_blank"
-          >
-            <i class="fas fa-file-alt"></i>
-            <h3>SPS Documentation</h3>
-            <p>
-              Official documentation covering all aspects of the SPS token
-              ecosystem
-            </p>
-          </a>
+        </h1>
+        <p>
+          SPS DAO empowers the community to shape the future of the
+          Splinterlands ecosystem
+        </p>
+        <div class="hero-buttons pulse">
           <a
             href="https://splinterlands.com"
-            class="resource-card"
-            target="_blank"
+            class="btn primary shine pulse"
+            target="_blank">Play Splinterlands</a
           >
-            <i class="fas fa-gamepad"></i>
-            <h3>Splinterlands Game</h3>
-            <p>Play the Splinterlands collectible card game</p>
-          </a>
-          <a
-            href="https://hive.blog/trending/splinterlands"
-            class="resource-card"
-            target="_blank"
+          <a href="#governance" class="btn secondary pulse"
+            >Learn About Governance</a
           >
-            <i class="fas fa-blog"></i>
-            <h3>Community Blog</h3>
-            <p>Latest news, updates, and discussions about Splinterlands</p>
-          </a>
-          <a
-            href="https://discord.com/invite/splinterlands"
-            class="resource-card"
-            target="_blank"
-          >
-            <i class="fab fa-discord"></i>
-            <h3>Discord Community</h3>
-            <p>Join the official Splinterlands Discord server</p>
-          </a>
-          <a
-            href="https://github.com/splinterlands"
-            class="resource-card"
-            target="_blank"
-          >
-            <i class="fab fa-github"></i>
-            <h3>GitHub</h3>
-            <p>Open-source repositories and code from the Splinterlands team</p>
-          </a>
-          <a
-            href="https://twitter.com/splinterlands"
-            class="resource-card"
-            target="_blank"
-          >
-            <i class="fab fa-twitter"></i>
-            <h3>Twitter</h3>
-            <p>Follow Splinterlands on Twitter for the latest updates</p>
-          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-logo">
-            <h2>SPS DAO</h2>
-            <p>Decentralized Governance for Splinterlands</p>
-            <div class="social-links">
-              <a href="https://twitter.com/splinterlands" target="_blank"
-                ><i class="fab fa-twitter"></i></a
-              >
-              <a href="https://discord.com/invite/splinterlands" target="_blank"
-                ><i class="fab fa-discord"></i></a
-              >
-              <a href="https://t.me/splinterlands" target="_blank"
-                ><i class="fab fa-telegram"></i></a
-              >
-              <a href="https://github.com/splinterlands" target="_blank"
-                ><i class="fab fa-github"></i></a
-              >
-            </div>
-          </div>
-          <div class="footer-links">
-            <div class="link-column">
-              <h3>Navigation</h3>
-              <a href="#about">About</a>
-              <a href="#governance">Governance</a>
-              <!-- Hidden sections
-                        <a href="#treasury">Treasury</a>
-                        <a href="#proposals">Proposals</a>
-                        -->
-              <a href="#token">Token</a>
-              <a href="#resources">Resources</a>
-            </div>
-            <div class="link-column">
-              <h3>Official Links</h3>
-              <a href="https://splinterlands.com" target="_blank"
-                >Splinterlands</a
-              >
-              <a href="https://sps.splinterlands.com" target="_blank"
-                >SPS Documentation</a
-              >
-              <a href="https://peakmonsters.com" target="_blank"
-                >PeakMonsters Marketplace</a
-              >
-              <a href="https://monstermarket.io" target="_blank"
-                >Monster Market</a
-              >
-            </div>
-            <div class="link-column">
-              <h3>Resources</h3>
-              <a href="https://docs.splinterlands.com" target="_blank"
-                >Game Guide</a
-              >
-              <a href="https://splintercards.com" target="_blank"
-                >Card Explorer</a
-              >
-              <a href="https://splinterstats.com" target="_blank"
-                >Game Statistics</a
-              >
-              <a
-                href="https://sps.splinterlands.com/legal-disclaimer"
-                target="_blank">Legal Disclaimer</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 SPS DAO. All rights reserved.</p>
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header scroll-animate">
+        <h2>About <span class="highlight">SPS DAO</span></h2>
+        <p>
+          Decentralized Autonomous Organization for the Splinterlands ecosystem
+        </p>
+      </div>
+      <div class="content-flex scroll-animate">
+        <div class="content-text">
           <p>
-            Splinterlands® is a registered trademark of Splinterlands, Inc.
+            The SPS token and all related tokens and smart contracts are set up
+            as a Decentralized Autonomous Organization (DAO). All decisions
+            relating to the token and related assets or contracts are decided
+            via votes of all staked SPS token holders, with the weight of the
+            votes being determined by the amount of staked SPS tokens held in
+            each participating wallet.
+          </p>
+          <p>
+            The DAO is able to hold, send, and receive cryptocurrency which
+            allows it to sell products and pay for services at the direction of
+            the token holders. All of the funds owned by the DAO, including
+            those from the SPS private token sale, token emissions that go
+            towards the DAO, and proceeds from product sales on behalf of the
+            DAO (e.g. LICENSE tokens and Riftwatchers packs), are currently held
+            in DAO multisig wallets that are controlled by DAO elected
+            Treasurers.
+          </p>
+          <h3>SPS Foundation</h3>
+          <p>
+            The SPS Foundation is a Panama-based Private Interest Foundation
+            owned and operated by a board of DAO elected representatives. The
+            purpose of the SPS Foundation is to represent and carry out the will
+            of the SPS DAO and to bridge the gap between the decentralized,
+            blockchain-based structure of the DAO and traditional legal and
+            regulatory systems.
           </p>
         </div>
+        <div class="about-cards">
+          <div class="card scroll-animate glowable tiltable">
+            <i class="fas fa-vote-yea"></i>
+            <h3>Community Governance</h3>
+            <p>
+              All staked SPS holders can vote on proposals and help shape the
+              future of Splinterlands.
+            </p>
+          </div>
+          <div class="card scroll-animate glowable tiltable">
+            <i class="fas fa-coins"></i>
+            <h3>Treasury Management</h3>
+            <p>
+              The DAO manages a substantial treasury with elected Treasurers who
+              oversee fund allocation.
+            </p>
+          </div>
+          <div class="card scroll-animate glowable tiltable">
+            <i class="fas fa-project-diagram"></i>
+            <h3>Ecosystem Development</h3>
+            <p>
+              Funding new features, partnerships, and initiatives to grow the
+              Splinterlands ecosystem.
+            </p>
+          </div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </body>
-</html>
+  <!-- Token Section -->
+  <section id="token">
+    <div class="container">
+      <div class="section-header scroll-animate">
+        <h2>The <span class="highlight">SPS Token</span></h2>
+        <p>
+          Splintershards - The governance token of the Splinterlands ecosystem
+        </p>
+      </div>
+      <div class="token-grid scroll-animate">
+        <div class="token-info scroll-animate">
+          <h3>Token Utility</h3>
+          <ul>
+            <li>
+              <i class="fas fa-check-circle"></i> Governance voting rights
+            </li>
+            <li><i class="fas fa-check-circle"></i> Staking rewards</li>
+            <li>
+              <i class="fas fa-check-circle"></i> Access to VOUCHER tokens
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Validator node operations
+            </li>
+            <li><i class="fas fa-check-circle"></i> Play-to-earn rewards</li>
+          </ul>
+          <div class="token-stats">
+            <div class="stat-item">
+              <h4>Max Supply</h4>
+              <p>3,000,000,000</p>
+            </div>
+            <div class="stat-item">
+              <h4>Current Circulating</h4>
+              <p>~1,950,000,000</p>
+            </div>
+          </div>
+        </div>
+        <div class="token-distribution scroll-animate">
+          <h3>Token Distribution</h3>
+          <div class="chart-container">
+            <canvas id="distributionChart"></canvas>
+          </div>
+          <div class="distribution-legend">
+            <div class="legend-item">
+              <span class="color-box" style="background-color: #FF6384;"></span>
+              <p>Play to Earn (30%) - 900M</p>
+            </div>
+            <div class="legend-item">
+              <span class="color-box" style="background-color: #36A2EB;"></span>
+              <p>Staking/LP/Oracle (30%) - 900M</p>
+            </div>
+            <div class="legend-item">
+              <span class="color-box" style="background-color: #FFCE56;"></span>
+              <p>Airdrop (13.33%) - 400M</p>
+            </div>
+            <div class="legend-item">
+              <span class="color-box" style="background-color: #4BC0C0;"></span>
+              <p>Foundation/DAO (10%) - 300M</p>
+            </div>
+            <div class="legend-item">
+              <span class="color-box" style="background-color: #9966FF;"></span>
+              <p>Unallocated (9%) - 270M</p>
+            </div>
+            <div class="legend-item">
+              <span class="color-box" style="background-color: #FF9F40;"></span>
+              <p>Private Sale (6.66%) - 200M</p>
+            </div>
+            <div class="legend-item">
+              <span class="color-box" style="background-color: #C9CBCF;"></span>
+              <p>Partners/Advisors (1%) - 30M</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance Section -->
+  <section id="governance">
+    <div class="container">
+      <div class="section-header">
+        <h2>DAO <span class="highlight">Governance</span></h2>
+        <p>How decisions are made in the SPS DAO</p>
+      </div>
+      <div class="governance-process scroll-animate">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Pre-Voting Phase</h3>
+            <p>
+              Anyone can submit a governance proposal by publishing a post on
+              the Hive blockchain with #spsproposal as the first tag. A fee of
+              100,000 DEC tokens must be burned to submit a proposal.
+            </p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Formal Voting Phase</h3>
+            <p>
+              Valid proposals move to the formal voting phase where staked SPS
+              token holders can vote. Voting power is proportional to the amount
+              of SPS staked.
+            </p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Proposal Implementation</h3>
+            <p>
+              If a proposal passes, the SPS DAO Treasurers execute the approved
+              transactions or actions according to the proposal specifications.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="governance-topics">
+        <h3>Common Proposal Topics</h3>
+        <div class="topics-grid scroll-animate">
+          <div class="topic-card scroll-animate glowable tiltable">
+            <i class="fas fa-chart-line interactive-icon"></i>
+            <h4>Treasury Allocation</h4>
+            <p>
+              How to allocate treasury funds for development, marketing, and
+              other initiatives.
+            </p>
+          </div>
+          <div class="topic-card scroll-animate glowable tiltable">
+            <i class="fas fa-handshake interactive-icon"></i>
+            <h4>Partnerships</h4>
+            <p>
+              Evaluating and approving strategic partnerships with other
+              projects or companies.
+            </p>
+          </div>
+          <div class="topic-card scroll-animate glowable tiltable">
+            <i class="fas fa-cogs interactive-icon"></i>
+            <h4>Protocol Updates</h4>
+            <p>
+              Changes to the SPS token mechanics, reward systems, or governance
+              processes.
+            </p>
+          </div>
+          <div class="topic-card scroll-animate glowable tiltable">
+            <i class="fas fa-users interactive-icon"></i>
+            <h4>Community Initiatives</h4>
+            <p>
+              Funding for community-led projects, events, or marketing
+              activities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Treasury Section -->
+  <section id="treasury">
+    <div class="container">
+      <div class="section-header scroll-animate">
+        <h2>DAO <span class="highlight">Treasury</span></h2>
+        <p>Transparent management of community assets</p>
+      </div>
+      <div class="treasury-highlight">
+        <div class="treasury-total">
+          <h3>Total Treasury Value</h3>
+          <p class="treasury-value">$6,386,899</p>
+          <p class="treasury-date">As of April 2025</p>
+        </div>
+        <div class="treasury-allocation">
+          <h3>Key Holdings</h3>
+          <div class="allocation-grid">
+            <div class="allocation-item">
+              <h4>SPS</h4>
+              <p>586,466,300 tokens</p>
+              <p class="allocation-value">$4,180,204</p>
+            </div>
+            <div class="allocation-item">
+              <h4>DEC</h4>
+              <p>1.47B tokens</p>
+              <p class="allocation-value">$1,311,383</p>
+            </div>
+            <div class="allocation-item">
+              <h4>HIVE Power</h4>
+              <p>1.13M HP</p>
+              <p class="allocation-value">$270,324</p>
+            </div>
+            <div class="allocation-item">
+              <h4>RIFT</h4>
+              <p>204,089 tokens</p>
+              <p class="allocation-value">$439,264</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="treasury-usage">
+        <h3>How Treasury Funds Can Be Used</h3>
+        <div class="usage-grid">
+          <div class="usage-card tiltable">
+            <i class="fas fa-water interactive-icon"></i>
+            <h4>Providing Liquidity</h4>
+            <p>
+              Token holders may vote to use foundation tokens to provide
+              liquidity for the SPS token on third-party markets.
+            </p>
+          </div>
+          <div class="usage-card tiltable">
+            <i class="fas fa-server interactive-icon"></i>
+            <h4>Paying for Services</h4>
+            <p>
+              Funds can be used to pay for services like exchange listings,
+              marketing, or promotional activities.
+            </p>
+          </div>
+          <div class="usage-card tiltable">
+            <i class="fas fa-code interactive-icon"></i>
+            <h4>Funding Development</h4>
+            <p>
+              Supporting third-party development of tools and services that add
+              value to the Splinterlands ecosystem.
+            </p>
+          </div>
+          <div class="usage-card tiltable">
+            <i class="fas fa-search-dollar interactive-icon"></i>
+            <h4>Investments</h4>
+            <p>
+              Investing in other assets or tokens to earn returns and help
+              sustain the foundation long-term.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proposals Section -->
+  <section id="proposals">
+    <div class="container">
+      <div class="section-header scroll-animate">
+        <h2>Active <span class="highlight">Proposals</span></h2>
+        <p>Current proposals under consideration by the community</p>
+      </div>
+      <div class="proposals-list">
+        <div class="proposal-card">
+          <div class="proposal-status active">Active</div>
+          <h3>Reduce SPS to DEC Conversion Fee</h3>
+          <p>
+            A proposal to reduce the conversion fee when swapping SPS tokens to
+            DEC tokens to encourage more economic activity.
+          </p>
+          <div class="proposal-meta">
+            <span
+              ><i class="fas fa-calendar"></i> Voting ends: May 10, 2025</span
+            >
+            <span><i class="fas fa-user"></i> Proposed by: clayboyn</span>
+          </div>
+          <a
+            href="https://www.waivio.com/@clayboyn/sps-governance-proposal-reduce-sps-to-dec-conversion-fee"
+            class="btn secondary pulse"
+            target="_blank">View Details</a
+          >
+        </div>
+        <div class="proposal-card">
+          <div class="proposal-status active">Active</div>
+          <h3>Stop SPS:BNB Pool Incentives</h3>
+          <p>
+            A proposal to reallocate the rewards currently being distributed to
+            the SPS:BNB liquidity pool to other programs.
+          </p>
+          <div class="proposal-meta">
+            <span><i class="fas fa-calendar"></i> Voting ends: May 8, 2025</span
+            >
+            <span><i class="fas fa-user"></i> Proposed by: clayboyn</span>
+          </div>
+          <a
+            href="https://www.waivio.com/@clayboyn/sps-governance-proposal-stop-sps-bnb-pool-incentives"
+            class="btn secondary pulse"
+            target="_blank">View Details</a
+          >
+        </div>
+        <div class="proposal-card">
+          <div class="proposal-status completed">Completed</div>
+          <h3>Guidelines for Treasurers</h3>
+          <p>
+            Standard guidelines that the SPS DAO Treasurers will follow when
+            executing transactions on behalf of the SPS DAO.
+          </p>
+          <div class="proposal-meta">
+            <span
+              ><i class="fas fa-calendar"></i> Completed: April 15, 2025</span
+            >
+            <span><i class="fas fa-user"></i> Proposed by: clayboyn</span>
+          </div>
+          <a
+            href="https://www.waivio.com/@clayboyn/sps-governance-proposal-guidelines-for-treasurers"
+            class="btn secondary pulse"
+            target="_blank">View Details</a
+          >
+        </div>
+      </div>
+      <div class="proposals-cta pulse">
+        <h3>Have an idea to improve Splinterlands?</h3>
+        <p>
+          Anyone can submit a governance proposal for consideration by the
+          community.
+        </p>
+        <a
+          href="https://sps.splinterlands.com/in-game-governance"
+          class="btn primary shine pulse"
+          target="_blank">Learn How to Submit a Proposal</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section id="resources">
+    <div class="container">
+      <div class="section-header scroll-animate">
+        <h2>DAO <span class="highlight">Resources</span></h2>
+        <p>Essential links and documentation for the SPS DAO</p>
+      </div>
+      <div class="resources-grid scroll-animate">
+        <a
+          href="https://sps.splinterlands.com/"
+          class="resource-card glowable tiltable"
+          target="_blank"
+        >
+          <i class="fas fa-file-alt interactive-icon"></i>
+          <h3>SPS Documentation</h3>
+          <p>
+            Official documentation covering all aspects of the SPS token
+            ecosystem
+          </p>
+        </a>
+        <a
+          href="https://splinterlands.com"
+          class="resource-card glowable tiltable"
+          target="_blank"
+        >
+          <i class="fas fa-gamepad interactive-icon"></i>
+          <h3>Splinterlands Game</h3>
+          <p>Play the Splinterlands collectible card game</p>
+        </a>
+        <a
+          href="https://hive.blog/trending/splinterlands"
+          class="resource-card glowable tiltable"
+          target="_blank"
+        >
+          <i class="fas fa-blog interactive-icon"></i>
+          <h3>Community Blog</h3>
+          <p>Latest news, updates, and discussions about Splinterlands</p>
+        </a>
+        <a
+          href="https://discord.com/invite/splinterlands"
+          class="resource-card glowable tiltable"
+          target="_blank"
+        >
+          <i class="fab fa-discord interactive-icon"></i>
+          <h3>Discord Community</h3>
+          <p>Join the official Splinterlands Discord server</p>
+        </a>
+        <a
+          href="https://github.com/splinterlands"
+          class="resource-card glowable tiltable"
+          target="_blank"
+        >
+          <i class="fab fa-github interactive-icon"></i>
+          <h3>GitHub</h3>
+          <p>Open-source repositories and code from the Splinterlands team</p>
+        </a>
+        <a
+          href="https://twitter.com/splinterlands"
+          class="resource-card glowable tiltable"
+          target="_blank"
+        >
+          <i class="fab fa-twitter interactive-icon"></i>
+          <h3>Twitter</h3>
+          <p>Follow Splinterlands on Twitter for the latest updates</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
 
 <script>
   // DOM Elements
-  const navbar = document.getElementById("navbar");
-  const hamburger = document.querySelector(".hamburger");
-  const navLinks = document.querySelector(".nav-links");
-  const navLinksItems = document.querySelectorAll(".nav-links li");
   const allSections = document.querySelectorAll("section");
 
   // Charts
@@ -629,94 +497,14 @@ import bg from "../assets/bg.jpeg";
     // Set data-text attribute for fire effect
     const heroTitle = document.querySelector(".hero-content h1");
     if (heroTitle) {
-      heroTitle.setAttribute("data-text", heroTitle.textContent);
+      heroTitle.setAttribute("data-text", heroTitle.textContent!);
     }
 
-    // Set data-text attribute for section headers
-    document.querySelectorAll(".section-header h2").forEach((header) => {
-      header.setAttribute("data-text", header.textContent);
-    });
-
     // Initialize animations and interactive elements
-    initScrollAnimations();
-    initNavbar();
     initCharts();
     addPageInteractivity();
     initTextFireParticles();
-    initTiltEffect();
-    initSmoothScrolling();
-    initCustomCursor();
   });
-
-  // Scroll animations
-  function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll(
-      ".card, .topic-card, .token-info, .token-distribution, .governance-process, .topics-grid, .resources-grid, .content-flex, .token-grid, .section-header"
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    animatedElements.forEach((item) => {
-      observer.observe(item);
-    });
-  }
-
-  // Navbar functionality
-  function initNavbar() {
-    // Toggle navbar on scroll
-    window.addEventListener("scroll", function () {
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-    });
-
-    // Mobile menu toggle
-    hamburger.addEventListener("click", function () {
-      hamburger.classList.toggle("active");
-      navLinks.classList.toggle("active");
-    });
-
-    // Close mobile menu when link is clicked
-    navLinksItems.forEach((item) => {
-      item.addEventListener("click", function () {
-        if (navLinks.classList.contains("active")) {
-          hamburger.classList.remove("active");
-          navLinks.classList.remove("active");
-        }
-      });
-    });
-
-    // Smooth scrolling for nav links
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute("href");
-
-        if (targetId === "#") return;
-
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 70,
-            behavior: "smooth",
-          });
-        }
-      });
-    });
-  }
 
   // Initialize charts
   function initCharts() {
@@ -760,7 +548,7 @@ import bg from "../assets/bg.jpeg";
             },
             tooltip: {
               callbacks: {
-                label: function (context) {
+                label: function (context: { label: string; parsed: number }) {
                   const label = context.label || "";
                   const value = context.parsed || 0;
                   return `${label}: ${value}%`;
@@ -782,22 +570,6 @@ import bg from "../assets/bg.jpeg";
 
   // Add more interactivity to the page
   function addPageInteractivity() {
-    // Add hover effect to card icons
-    document
-      .querySelectorAll(
-        ".card i, .topic-card i, .resource-card i, .usage-card i"
-      )
-      .forEach((icon) => {
-        icon.addEventListener("mouseenter", function () {
-          this.style.transform = "scale(1.2) translateY(-5px)";
-          this.style.transition = "transform 0.3s ease";
-        });
-
-        icon.addEventListener("mouseleave", function () {
-          this.style.transform = "scale(1) translateY(0)";
-        });
-      });
-
     // Add parallax effect to hero section
     const hero = document.getElementById("hero");
     if (hero) {
@@ -807,29 +579,6 @@ import bg from "../assets/bg.jpeg";
           hero.style.backgroundPositionY = `${scrollPosition * 0.4}px`;
         }
       });
-    }
-
-    // Add dynamic accent colors to some elements on hover
-    document.querySelectorAll(".btn.secondary").forEach((btn) => {
-      btn.addEventListener("mouseenter", function () {
-        const randomHue = Math.floor(Math.random() * 40) + 180; // Blue to purple range
-        this.style.borderColor = `hsl(${randomHue}, 80%, 60%)`;
-      });
-
-      btn.addEventListener("mouseleave", function () {
-        this.style.borderColor = "";
-      });
-    });
-
-    // Add subtle pulse effect to logo
-    const logo = document.querySelector(".logo h1");
-    if (logo) {
-      setInterval(() => {
-        logo.classList.add("pulse");
-        setTimeout(() => {
-          logo.classList.remove("pulse");
-        }, 3000);
-      }, 7000);
     }
 
     // Create dynamic particles in hero section for added visual interest
@@ -858,7 +607,7 @@ import bg from "../assets/bg.jpeg";
     }
   }
 
-  function createParticle(container) {
+  function createParticle(container: HTMLDivElement) {
     const particle = document.createElement("div");
 
     // Random position
@@ -915,142 +664,12 @@ import bg from "../assets/bg.jpeg";
     }, duration * 1000);
   }
 
-  // Section animations on scroll
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in");
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  document.querySelectorAll("section").forEach((section) => {
-    observer.observe(section);
-  });
-
-  // Dynamic token distribution chart
-  const renderDistributionChart = () => {
-    const ctx = document.getElementById("distributionChart");
-
-    if (ctx) {
-      new Chart(ctx, {
-        type: "doughnut",
-        data: {
-          labels: [
-            "Play to Earn (30%)",
-            "Staking/LP/Oracle (30%)",
-            "Airdrop (13.33%)",
-            "Foundation/DAO (10%)",
-            "Unallocated (9%)",
-            "Private Sale (6.66%)",
-            "Partners/Advisors (1%)",
-          ],
-          datasets: [
-            {
-              label: "Token Distribution",
-              data: [30, 30, 13.33, 10, 9, 6.66, 1],
-              backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#4BC0C0",
-                "#9966FF",
-                "#FF9F40",
-                "#C9CBCF",
-              ],
-              borderWidth: 2,
-              borderColor: "rgba(255, 255, 255, 0.1)",
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            },
-            tooltip: {
-              callbacks: {
-                label: function (context) {
-                  const value = context.parsed;
-                  const label = context.label || "";
-                  return `${label}: ${value}% (${(value * 30).toFixed(0)}M tokens)`;
-                },
-              },
-            },
-          },
-          cutout: "65%",
-        },
-      });
-    }
-  };
-
-  // Initialize the chart when the DOM is loaded
-  document.addEventListener("DOMContentLoaded", () => {
-    renderDistributionChart();
-
-    // Add shine effect to specific elements
-    document
-      .querySelectorAll(".btn.primary, .token-value, .treasury-value")
-      .forEach((element) => {
-        element.classList.add("shine");
-      });
-
-    // Add pulse effect to CTA elements
-    document
-      .querySelectorAll(".proposals-cta .btn, .hero-buttons .btn.primary")
-      .forEach((element) => {
-        element.classList.add("pulse");
-      });
-
-    // Add glowing effect to cards
-    const addGlowEffect = () => {
-      const cards = document.querySelectorAll(
-        ".card, .topic-card, .resource-card"
-      );
-      cards.forEach((card) => {
-        card.addEventListener("mouseenter", () => {
-          card.classList.add("glow");
-        });
-        card.addEventListener("mouseleave", () => {
-          card.classList.remove("glow");
-        });
-      });
-    };
-
-    addGlowEffect();
-  });
-
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const targetId = this.getAttribute("href");
-      if (targetId === "#") return;
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        const navbarHeight = document.getElementById("navbar").offsetHeight;
-        const targetPosition =
-          targetElement.getBoundingClientRect().top +
-          window.pageYOffset -
-          navbarHeight;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-
   // Dynamic counter animation for treasury value
-  const animateCounter = (element, targetValue, duration = 2000) => {
+  const animateCounter = (
+    element: Element,
+    targetValue: number,
+    duration = 2000
+  ) => {
     const start = 0;
     const increment = targetValue / (duration / 16);
     let current = start;
@@ -1076,7 +695,10 @@ import bg from "../assets/bg.jpeg";
           const treasuryValue = document.querySelector(".treasury-value");
           if (treasuryValue) {
             // Extract the numeric value from the text content
-            const valueString = treasuryValue.textContent.replace(/[^\d]/g, "");
+            const valueString = treasuryValue.textContent!.replace(
+              /[^\d]/g,
+              ""
+            );
             const targetValue = parseInt(valueString, 10);
 
             // Reset the text content to prepare for animation
@@ -1102,7 +724,7 @@ import bg from "../assets/bg.jpeg";
 
   // Parallax effect for background images
   const parallaxEffect = () => {
-    const sections = document.querySelectorAll(
+    const sections = document.querySelectorAll<HTMLDivElement>(
       "#hero, #token, #treasury, #resources"
     );
 
@@ -1144,7 +766,7 @@ import bg from "../assets/bg.jpeg";
     particlesContainer.style.zIndex = "2";
 
     // Insert the particles container as a sibling of the title
-    heroTitle.parentNode.insertBefore(
+    heroTitle.parentNode!.insertBefore(
       particlesContainer,
       heroTitle.nextSibling
     );
@@ -1156,7 +778,7 @@ import bg from "../assets/bg.jpeg";
     // Update particle emission point on mouse move
     document.addEventListener("mousemove", (e) => {
       const heroContent = document.querySelector("#hero");
-      const rect = heroContent.getBoundingClientRect();
+      const rect = heroContent!.getBoundingClientRect();
 
       // Only track mouse within hero content area
       if (
@@ -1175,7 +797,7 @@ import bg from "../assets/bg.jpeg";
 
     // Create particles that follow the title text
     function createTextParticles() {
-      const titleRect = heroTitle.getBoundingClientRect();
+      const titleRect = heroTitle!.getBoundingClientRect();
 
       // Emit particles along the text
       for (let i = 0; i < 2; i++) {
@@ -1202,7 +824,7 @@ import bg from "../assets/bg.jpeg";
   }
 
   // Create a single blue fire particle
-  function createFireParticle(container, x, y) {
+  function createFireParticle(container: HTMLDivElement, x: number, y: number) {
     const particle = document.createElement("div");
 
     // Random particle properties
@@ -1243,7 +865,7 @@ import bg from "../assets/bg.jpeg";
     // Animate the particle
     const startTime = performance.now();
 
-    function animateParticle(timestamp) {
+    function animateParticle(timestamp: number) {
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / (duration * 1000), 1);
 
@@ -1277,511 +899,13 @@ import bg from "../assets/bg.jpeg";
     // Start the animation
     requestAnimationFrame(animateParticle);
   }
-
-  // Initialize smooth scrolling and snap points
-  function initSmoothScrolling() {
-    // Smooth scroll to section when clicking navigation links
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        const targetId = this.getAttribute("href");
-        if (targetId === "#") return;
-
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          // Add active state to clicked link
-          document.querySelectorAll(".nav-links a").forEach((link) => {
-            link.classList.remove("active");
-          });
-          this.classList.add("active");
-
-          // Scroll to the target with a smooth animation
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: "smooth",
-          });
-        }
-      });
-    });
-
-    // Update active navigation based on scroll position
-    window.addEventListener("scroll", () => {
-      const scrollPosition = window.scrollY + 100;
-
-      document.querySelectorAll("section").forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute("id");
-
-        if (
-          scrollPosition >= sectionTop &&
-          scrollPosition < sectionTop + sectionHeight
-        ) {
-          document.querySelectorAll(".nav-links a").forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${sectionId}`) {
-              link.classList.add("active");
-            }
-          });
-        }
-      });
-    });
-  }
-
-  // Initialize custom cursor effect
-  function initCustomCursor() {
-    const cursor = document.createElement("div");
-    cursor.className = "custom-cursor";
-    cursor.style.position = "fixed";
-    cursor.style.width = "20px";
-    cursor.style.height = "20px";
-    cursor.style.borderRadius = "50%";
-    cursor.style.border = "2px solid rgba(66, 198, 235, 0.6)";
-    cursor.style.transform = "translate(-50%, -50%)";
-    cursor.style.pointerEvents = "none";
-    cursor.style.zIndex = "9999";
-    cursor.style.mixBlendMode = "difference";
-    cursor.style.transition = "width 0.2s, height 0.2s, opacity 0.2s";
-
-    const cursorDot = document.createElement("div");
-    cursorDot.className = "cursor-dot";
-    cursorDot.style.position = "fixed";
-    cursorDot.style.width = "5px";
-    cursorDot.style.height = "5px";
-    cursorDot.style.borderRadius = "50%";
-    cursorDot.style.backgroundColor = "rgba(66, 198, 235, 0.9)";
-    cursorDot.style.transform = "translate(-50%, -50%)";
-    cursorDot.style.pointerEvents = "none";
-    cursorDot.style.zIndex = "10000";
-    cursorDot.style.transition = "opacity 0.2s";
-
-    document.body.appendChild(cursor);
-    document.body.appendChild(cursorDot);
-
-    // Update cursor position
-    document.addEventListener("mousemove", (e) => {
-      // Smoother cursor movement with requestAnimationFrame
-      requestAnimationFrame(() => {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-
-        // Dot follows immediately for responsiveness
-        cursorDot.style.left = `${e.clientX}px`;
-        cursorDot.style.top = `${e.clientY}px`;
-      });
-    });
-
-    // Hover effects for interactive elements
-    const interactiveElements = document.querySelectorAll(
-      "a, button, .card, .resource-card, .btn"
-    );
-
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", () => {
-        cursor.style.width = "40px";
-        cursor.style.height = "40px";
-        cursor.style.borderColor = "rgba(156, 77, 255, 0.6)";
-        cursorDot.style.backgroundColor = "rgba(156, 77, 255, 0.9)";
-      });
-
-      el.addEventListener("mouseleave", () => {
-        cursor.style.width = "20px";
-        cursor.style.height = "20px";
-        cursor.style.borderColor = "rgba(66, 198, 235, 0.6)";
-        cursorDot.style.backgroundColor = "rgba(66, 198, 235, 0.9)";
-      });
-    });
-
-    // Hide cursor when mouse leaves the window
-    document.addEventListener("mouseout", (e) => {
-      if (e.relatedTarget === null) {
-        cursor.style.opacity = "0";
-        cursorDot.style.opacity = "0";
-      }
-    });
-
-    document.addEventListener("mouseover", () => {
-      cursor.style.opacity = "1";
-      cursorDot.style.opacity = "1";
-    });
-  }
-
-  // Initialize 3D tilt effect on cards
-  function initTiltEffect() {
-    const tiltElements = document.querySelectorAll(
-      ".card, .topic-card, .resource-card, .usage-card"
-    );
-
-    tiltElements.forEach((element) => {
-      element.classList.add("tilt-card");
-
-      // Create inner container for 3D effect if not already present
-      if (!element.querySelector(".tilt-card-inner")) {
-        const inner = document.createElement("div");
-        inner.className = "tilt-card-inner";
-
-        // Move all child elements into the inner container
-        while (element.firstChild) {
-          inner.appendChild(element.firstChild);
-        }
-
-        element.appendChild(inner);
-      }
-
-      element.addEventListener("mousemove", handleTilt);
-      element.addEventListener("mouseleave", resetTilt);
-    });
-  }
-
-  // Handle the tilt effect based on mouse position
-  function handleTilt(e) {
-    const card = this;
-    const cardRect = card.getBoundingClientRect();
-    const cardInner = card.querySelector(".tilt-card-inner");
-
-    // Calculate mouse position relative to the card
-    const x = e.clientX - cardRect.left;
-    const y = e.clientY - cardRect.top;
-
-    // Calculate rotation based on mouse position
-    const centerX = cardRect.width / 2;
-    const centerY = cardRect.height / 2;
-    const rotateY = ((x - centerX) / centerX) * 10; // Max 10 degrees
-    const rotateX = -((y - centerY) / centerY) * 10; // Max 10 degrees
-
-    // Apply the rotation
-    cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-
-    // Add a subtle glow effect where the mouse is
-    const glowX = (x / cardRect.width) * 100;
-    const glowY = (y / cardRect.height) * 100;
-
-    card.style.background = `
-        radial-gradient(
-            circle at ${glowX}% ${glowY}%, 
-            rgba(66, 198, 235, 0.08), 
-            rgba(255, 255, 255, 0.02) 40%
-        ),
-        rgba(255, 255, 255, 0.02)
-    `;
-  }
-
-  // Reset the tilt when mouse leaves
-  function resetTilt() {
-    const card = this;
-    const cardInner = card.querySelector(".tilt-card-inner");
-
-    cardInner.style.transform = "rotateX(0deg) rotateY(0deg)";
-    card.style.background = "rgba(255, 255, 255, 0.02)";
-  }
 </script>
 
-<style define:vars={{
-  heroImage: `url(${bg.src})`
-}}>
-  /* Global Styles */
-  :root {
-    --primary-color: #42c6eb; /* Bright teal blue */
-    --secondary-color: #9c4dff; /* Bright purple */
-    --gradient-primary: linear-gradient(
-      135deg,
-      #2b4dbb 0%,
-      #42c6eb 100%
-    ); /* Deep blue to teal */
-    --gradient-secondary: linear-gradient(
-      135deg,
-      #9c4dff 0%,
-      #42c6eb 100%
-    ); /* Purple to teal */
-    --accent-glow: rgba(66, 198, 235, 0.6);
-    --accent-purple-glow: rgba(156, 77, 255, 0.6);
-    --dark-bg: #0c1a2a; /* Deeper navy */
-    --darker-bg: #07121e; /* Darkest navy */
-    --light-text: #ffffff;
-    --gray-text: #a4d1e6; /* Lighter blue-ish gray */
-    --border-radius: 10px;
-    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    --transition: all 0.3s ease-in-out;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    font-family: "Montserrat", sans-serif;
-    background: var(--dark-bg);
-    color: var(--light-text);
-    line-height: 1.6;
-    overflow-x: hidden;
-    position: relative;
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        circle at 10% 0%,
-        rgba(66, 198, 235, 0.05) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 90% 90%,
-        rgba(156, 77, 255, 0.05) 0%,
-        transparent 50%
-      );
-    z-index: -1;
-    pointer-events: none;
-  }
-
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  a {
-    text-decoration: none;
-    color: var(--light-text);
-    transition: var(--transition);
-  }
-
-  ul {
-    list-style: none;
-  }
-
-  .highlight {
-    color: #42c6eb;
-    font-weight: 700;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: var(--transition);
-    cursor: pointer;
-    margin-right: 15px;
-    border: none;
-    font-size: 1rem;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .btn.primary {
-    background: var(--gradient-primary);
-    color: white;
-    box-shadow: 0 4px 15px rgba(66, 198, 235, 0.5);
-  }
-
-  .btn.secondary {
-    background: transparent;
-    border: 2px solid var(--primary-color);
-    color: var(--light-text);
-  }
-
-  .btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
-    transition: var(--transition);
-    z-index: -1;
-  }
-
-  .btn:hover::before {
-    left: 100%;
-    transition: 0.8s;
-  }
-
-  .btn.primary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(66, 198, 235, 0.7);
-  }
-
-  .btn.secondary:hover {
-    background: var(--primary-color);
-    color: white;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(66, 198, 235, 0.4);
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 60px;
-    position: relative;
-  }
-
-  .section-header h2 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
-    position: relative;
-    display: inline-block;
-    background: linear-gradient(to right, #ffffff, var(--primary-color));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-fill-color: transparent;
-  }
-
-  .section-header h2:after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    width: 60px;
-    height: 3px;
-    background: var(--gradient-secondary);
-    transform: translateX(-50%);
-    border-radius: 3px;
-    box-shadow: 0 0 10px var(--accent-purple-glow);
-  }
-
-  .section-header p {
-    color: var(--gray-text);
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  section {
-    padding: 100px 0;
-  }
-
-  /* Navigation */
-  #navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 20px 0;
-    transition: var(--transition);
-    background: rgba(7, 18, 30, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(66, 198, 235, 0.1);
-  }
-
-  #navbar.scrolled {
-    padding: 15px 0;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    background: rgba(7, 18, 30, 0.95);
-  }
-
-  #navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-
-  .logo img {
-    height: 40px;
-    margin-right: 15px;
-  }
-
-  .logo h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--light-text);
-    position: relative;
-    display: inline-block;
-    letter-spacing: 1px;
-  }
-
-  .logo h1::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--gradient-secondary);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease;
-  }
-
-  .logo:hover h1::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
-  .nav-links {
-    display: flex;
-  }
-
-  .nav-links li {
-    margin-left: 30px;
-  }
-
-  .nav-links a {
-    font-weight: 600;
-    position: relative;
-    padding-bottom: 5px;
-    transition: color 0.3s ease;
-  }
-
-  .nav-links a:hover {
-    color: var(--primary-color);
-  }
-
-  .nav-links a:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-primary);
-    transition: width 0.3s ease;
-    box-shadow: 0 0 5px var(--accent-glow);
-  }
-
-  .nav-links a:hover:after {
-    width: 100%;
-  }
-
-  .hamburger {
-    display: none;
-    cursor: pointer;
-  }
-
-  .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px;
-    background-color: var(--light-text);
-    transition: var(--transition);
-  }
-
+<style
+  define:vars={{
+    heroImage: `url(${bg.src})`,
+  }}
+>
   /* Hero Section */
   #hero {
     min-height: 100vh;
@@ -1889,58 +1013,6 @@ import bg from "../assets/bg.jpeg";
     animation: glow-pulse 3s ease-in-out infinite alternate;
   }
 
-  @keyframes blue-fire {
-    0% {
-      background-position: 0% 0%;
-    }
-    50% {
-      background-position: 0% 100%;
-    }
-    100% {
-      background-position: 0% 0%;
-    }
-  }
-
-  @keyframes flicker {
-    0%,
-    18%,
-    22%,
-    25%,
-    53%,
-    57%,
-    100% {
-      text-shadow:
-        0 0 5px rgba(66, 198, 235, 0.8),
-        0 0 10px rgba(66, 198, 235, 0.6),
-        0 0 15px rgba(45, 166, 235, 0.4),
-        0 0 20px rgba(30, 144, 255, 0.3),
-        0 0 30px rgba(15, 82, 186, 0.2);
-    }
-    20%,
-    24%,
-    55% {
-      text-shadow:
-        0 0 5px rgba(66, 198, 235, 0.5),
-        0 0 10px rgba(45, 166, 235, 0.3),
-        0 0 15px rgba(30, 144, 255, 0.2);
-    }
-  }
-
-  @keyframes glow-pulse {
-    0% {
-      opacity: 0.4;
-      filter: blur(10px);
-    }
-    50% {
-      opacity: 0.7;
-      filter: blur(15px);
-    }
-    100% {
-      opacity: 0.4;
-      filter: blur(10px);
-    }
-  }
-
   .hero-content p {
     font-size: 1.3rem;
     color: var(--gray-text);
@@ -1964,18 +1036,6 @@ import bg from "../assets/bg.jpeg";
   .hero-image img {
     max-width: 100%;
     animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-    100% {
-      transform: translateY(0);
-    }
   }
 
   /* About Section */
@@ -2009,66 +1069,6 @@ import bg from "../assets/bg.jpeg";
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-  }
-
-  .card {
-    background: rgba(255, 255, 255, 0.02);
-    padding: 35px;
-    border-radius: var(--border-radius);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(66, 198, 235, 0.15);
-    backdrop-filter: blur(5px);
-    z-index: 1;
-  }
-
-  .card:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: -1;
-  }
-
-  .card:hover {
-    transform: translateY(-15px) scale(1.03);
-    border-color: var(--primary-color);
-    box-shadow:
-      0 15px 30px rgba(0, 0, 0, 0.3),
-      0 0 15px var(--accent-glow);
-  }
-
-  .card:hover:before {
-    opacity: 0.08;
-  }
-
-  .card i {
-    font-size: 2.5rem;
-    margin-bottom: 25px;
-    background: linear-gradient(
-      135deg,
-      var(--primary-color),
-      var(--secondary-color)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-fill-color: transparent;
-  }
-
-  .card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-  }
-
-  .card p {
-    color: var(--gray-text);
   }
 
   /* Token Section */
@@ -2681,144 +1681,6 @@ import bg from "../assets/bg.jpeg";
     color: var(--gray-text);
   }
 
-  /* Footer */
-  footer {
-    background: var(--darker-bg);
-    padding: 80px 0 30px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      transparent 0%,
-      var(--primary-color) 50%,
-      transparent 100%
-    );
-  }
-
-  .footer-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 50px;
-    margin-bottom: 50px;
-  }
-
-  .footer-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer-logo img {
-    height: 60px;
-    margin-bottom: 20px;
-  }
-
-  .footer-logo h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-  }
-
-  .footer-logo p {
-    color: var(--gray-text);
-    margin-bottom: 20px;
-  }
-
-  .social-links {
-    display: flex;
-    gap: 15px;
-  }
-
-  .social-links a {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(66, 198, 235, 0.2);
-  }
-
-  .social-links a:hover {
-    background: var(--gradient-primary);
-    transform: translateY(-8px) scale(1.1);
-    box-shadow:
-      0 10px 20px rgba(0, 0, 0, 0.2),
-      0 0 15px var(--accent-glow);
-  }
-
-  .social-links a i {
-    transition: var(--transition);
-    font-size: 1.1rem;
-  }
-
-  .social-links a:hover i {
-    color: white;
-    transform: scale(1.2);
-  }
-
-  .footer-links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-  }
-
-  .link-column h3 {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-  }
-
-  .link-column a {
-    display: block;
-    margin-bottom: 12px;
-    color: var(--gray-text);
-    transition: all 0.3s ease;
-    position: relative;
-    padding-left: 0;
-  }
-
-  .link-column a::before {
-    content: "→";
-    position: absolute;
-    left: -20px;
-    opacity: 0;
-    transition: all 0.3s ease;
-    color: var(--primary-color);
-  }
-
-  .link-column a:hover {
-    color: var(--light-text);
-    transform: translateX(5px);
-    padding-left: 15px;
-  }
-
-  .link-column a:hover::before {
-    opacity: 1;
-    left: -8px;
-  }
-
-  .footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .footer-bottom p {
-    color: var(--gray-text);
-    margin-bottom: 10px;
-  }
-
   /* Media Queries */
   @media (max-width: 1024px) {
     .hero-content h1 {
@@ -2832,50 +1694,9 @@ import bg from "../assets/bg.jpeg";
     .treasury-highlight {
       grid-template-columns: 1fr;
     }
-
-    .footer-content {
-      grid-template-columns: 1fr;
-    }
   }
 
   @media (max-width: 768px) {
-    .nav-links {
-      position: fixed;
-      left: -100%;
-      top: 5rem;
-      flex-direction: column;
-      background: var(--darker-bg);
-      width: 100%;
-      text-align: center;
-      transition: var(--transition);
-      box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-      padding: 20px 0;
-    }
-
-    .nav-links.active {
-      left: 0;
-    }
-
-    .nav-links li {
-      margin: 2.5rem 0;
-    }
-
-    .hamburger {
-      display: block;
-    }
-
-    .hamburger.active .bar:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active .bar:nth-child(1) {
-      transform: translateY(8px) rotate(45deg);
-    }
-
-    .hamburger.active .bar:nth-child(3) {
-      transform: translateY(-8px) rotate(-45deg);
-    }
-
     #hero .container {
       flex-direction: column;
       text-align: center;
@@ -2897,28 +1718,11 @@ import bg from "../assets/bg.jpeg";
     .content-flex {
       flex-direction: column;
     }
-
-    .section-header h2 {
-      font-size: 2rem;
-    }
-
-    .footer-links {
-      grid-template-columns: 1fr;
-    }
   }
 
   @media (max-width: 480px) {
     .hero-content h1 {
       font-size: 2rem;
-    }
-
-    .btn {
-      padding: 10px 20px;
-      font-size: 0.9rem;
-    }
-
-    .section-header h2 {
-      font-size: 1.8rem;
     }
 
     .token-stats {
@@ -2934,114 +1738,6 @@ import bg from "../assets/bg.jpeg";
     }
   }
 
-  /* Animations */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.05);
-      opacity: 0.8;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  .fade-in {
-    animation: fadeIn 1s ease-out;
-  }
-
-  .pulse {
-    animation: pulse 3s infinite;
-  }
-
-  /* Add more interactive elements */
-  .reveal-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-  }
-
-  .reveal-on-scroll.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Glowing effect for certain elements */
-  .glow {
-    box-shadow: 0 0 15px var(--primary-color);
-  }
-
-  /* Shining effect */
-  .shine {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .shine::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(66, 198, 235, 0.3) 50%,
-      transparent 100%
-    );
-    transform: skewX(-25deg);
-    animation: shine 3s infinite;
-  }
-
-  @keyframes shine {
-    0% {
-      left: -100%;
-    }
-    20% {
-      left: 100%;
-    }
-    100% {
-      left: 100%;
-    }
-  }
-
-  /* Add some magical sparkle effects inspired by the image */
-  @keyframes sparkle {
-    0%,
-    100% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-  .card:hover:before,
   .topic-card:hover:before,
   .resource-card:hover:before,
   .usage-card:hover:before {
@@ -3108,7 +1804,6 @@ import bg from "../assets/bg.jpeg";
   }
 
   /* Add this to make sure the JS functionality works */
-  .card,
   .topic-card,
   .token-info,
   .token-distribution,

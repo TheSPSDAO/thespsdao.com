@@ -1,21 +1,538 @@
 ---
-// Import Font Awesome for icons
+
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SPS DAO - Splinterlands Governance</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="global.css" />
   </head>
-  <body
-    class="bg-[rgb(var(--dark-bg-color))] text-[rgb(var(--light-text-color))] relative"
-  >
+  <body>
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="container">
+        <div class="logo">
+          <h1><a href="/">SPS DAO</a></h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#governance">Governance</a></li>
+          <!-- Hidden sections
+                <li><a href="#treasury">Treasury</a></li>
+                <li><a href="#proposals">Proposals</a></li>
+                -->
+          <li><a href="/#token">Token</a></li>
+          <li><a href="/#resources">Resources</a></li>
+          <li><a href="/validator">SPS Validator</a></li>
+          <li><a href="/kyc">KYC</a></li>
+          <li><a href="/legal">Legal</a></li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
     <!-- Navigation -->
     <slot />
 
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h2>SPS DAO</h2>
+            <p>Decentralized Governance for Splinterlands</p>
+            <div class="social-links">
+              <a href="https://twitter.com/splinterlands" target="_blank"
+                ><i class="fab fa-twitter"></i></a
+              >
+              <a href="https://discord.com/invite/splinterlands" target="_blank"
+                ><i class="fab fa-discord"></i></a
+              >
+              <a href="https://t.me/splinterlands" target="_blank"
+                ><i class="fab fa-telegram"></i></a
+              >
+              <a href="https://github.com/splinterlands" target="_blank"
+                ><i class="fab fa-github"></i></a
+              >
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="link-column">
+              <h3>Navigation</h3>
+              <a href="#about">About</a>
+              <a href="#governance">Governance</a>
+              <!-- Hidden sections
+                        <a href="#treasury">Treasury</a>
+                        <a href="#proposals">Proposals</a>
+                        -->
+              <a href="#token">Token</a>
+              <a href="#resources">Resources</a>
+            </div>
+            <div class="link-column">
+              <h3>Official Links</h3>
+              <a href="https://splinterlands.com" target="_blank"
+                >Splinterlands</a
+              >
+              <a href="https://sps.splinterlands.com" target="_blank"
+                >SPS Documentation</a
+              >
+              <a href="https://peakmonsters.com" target="_blank"
+                >PeakMonsters Marketplace</a
+              >
+              <a href="https://monstermarket.io" target="_blank"
+                >Monster Market</a
+              >
+            </div>
+            <div class="link-column">
+              <h3>Resources</h3>
+              <a href="https://docs.splinterlands.com" target="_blank"
+                >Game Guide</a
+              >
+              <a href="https://splintercards.com" target="_blank"
+                >Card Explorer</a
+              >
+              <a href="https://splinterstats.com" target="_blank"
+                >Game Statistics</a
+              >
+              <a href="/legal" target="_blank">Legal Disclaimer</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 SPS DAO. All rights reserved.</p>
+          <p>
+            Splinterlands® is a registered trademark of Splinterlands, Inc.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const navbar = document.getElementById("navbar")!;
+      const hamburger = document.querySelector(".hamburger")!;
+      const navLinks = document.querySelector(".nav-links")!;
+      const navLinksItems = document.querySelectorAll(".nav-links li");
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set data-text attribute for section headers
+        document.querySelectorAll(".section-header h2").forEach((header) => {
+          header.setAttribute("data-text", header.textContent!);
+        });
+
+        // Initialize animations and interactive elements
+        initScrollAnimations();
+        initNavbar();
+        addPageInteractivity();
+        initOtherEffects();
+        initTiltEffect();
+        initSmoothScrolling();
+        initCustomCursor();
+      });
+
+      // Scroll animations
+      function initScrollAnimations() {
+        const animatedElements = document.querySelectorAll(".scroll-animate");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        animatedElements.forEach((item) => {
+          observer.observe(item);
+        });
+      }
+
+      // Navbar functionality
+      function initNavbar() {
+        // Toggle navbar on scroll
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Mobile menu toggle
+        hamburger.addEventListener("click", function () {
+          hamburger.classList.toggle("active");
+          navLinks.classList.toggle("active");
+        });
+
+        // Close mobile menu when link is clicked
+        navLinksItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            if (navLinks.classList.contains("active")) {
+              hamburger.classList.remove("active");
+              navLinks.classList.remove("active");
+            }
+          });
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            if (location.pathname !== "/") {
+              // If not on the homepage, adjust href to include base path
+              return;
+            }
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+
+            if (targetId === "#") return;
+            const cleanedTarget = targetId.substring(
+              targetId.indexOf("#"),
+              targetId.length
+            );
+            const targetElement = document.querySelector(cleanedTarget);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 70,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      }
+
+      // Add page interactivity
+      function addPageInteractivity() {
+        // Add hover effect to card icons
+        document
+          .querySelectorAll(".card i, .interactive-icon")
+          .forEach((icon) => {
+            icon.addEventListener("mouseenter", function () {
+              this.style.transform = "scale(1.2) translateY(-5px)";
+              this.style.transition = "transform 0.3s ease";
+            });
+
+            icon.addEventListener("mouseleave", function () {
+              this.style.transform = "scale(1) translateY(0)";
+            });
+          });
+
+        // Add dynamic accent colors to some elements on hover
+        document.querySelectorAll(".btn.secondary").forEach((btn) => {
+          btn.addEventListener("mouseenter", function () {
+            const randomHue = Math.floor(Math.random() * 40) + 180; // Blue to purple range
+            this.style.borderColor = `hsl(${randomHue}, 80%, 60%)`;
+          });
+
+          btn.addEventListener("mouseleave", function () {
+            this.style.borderColor = "";
+          });
+        });
+
+        // Add subtle pulse effect to logo
+        const logo = document.querySelector(".logo h1");
+        if (logo) {
+          setInterval(() => {
+            logo.classList.add("pulse");
+            setTimeout(() => {
+              logo.classList.remove("pulse");
+            }, 3000);
+          }, 7000);
+        }
+      }
+
+      function initOtherEffects() {
+        // Section animations on scroll
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("fade-in");
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document.querySelectorAll("section").forEach((section) => {
+          observer.observe(section);
+        });
+
+        // Add glowing effect to cards
+        const addGlowEffect = () => {
+          const cards = document.querySelectorAll(".glowable");
+          cards.forEach((card) => {
+            card.addEventListener("mouseenter", () => {
+              card.classList.add("glow");
+            });
+            card.addEventListener("mouseleave", () => {
+              card.classList.remove("glow");
+            });
+          });
+        };
+
+        addGlowEffect();
+      }
+
+      // Initialize 3D tilt effect on cards
+      function initTiltEffect() {
+        const tiltElements = document.querySelectorAll(".tiltable");
+
+        tiltElements.forEach((element) => {
+          element.classList.add("tilt-card");
+
+          // Create inner container for 3D effect if not already present
+          if (!element.querySelector(".tilt-card-inner")) {
+            const inner = document.createElement("div");
+            inner.className = "tilt-card-inner";
+
+            // Move all child elements into the inner container
+            while (element.firstChild) {
+              inner.appendChild(element.firstChild);
+            }
+
+            element.appendChild(inner);
+          }
+
+          element.addEventListener("mousemove", handleTilt);
+          element.addEventListener("mouseleave", resetTilt);
+        });
+      }
+
+      // Handle the tilt effect based on mouse position
+      function handleTilt(e) {
+        const card = this;
+        const cardRect = card.getBoundingClientRect();
+        const cardInner = card.querySelector(".tilt-card-inner");
+
+        // Calculate mouse position relative to the card
+        const x = e.clientX - cardRect.left;
+        const y = e.clientY - cardRect.top;
+
+        // Calculate rotation based on mouse position
+        const centerX = cardRect.width / 2;
+        const centerY = cardRect.height / 2;
+        const rotateY = ((x - centerX) / centerX) * 10; // Max 10 degrees
+        const rotateX = -((y - centerY) / centerY) * 10; // Max 10 degrees
+
+        // Apply the rotation
+        cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+        // Add a subtle glow effect where the mouse is
+        const glowX = (x / cardRect.width) * 100;
+        const glowY = (y / cardRect.height) * 100;
+
+        card.style.background = `
+        radial-gradient(
+            circle at ${glowX}% ${glowY}%, 
+            rgba(66, 198, 235, 0.08), 
+            rgba(255, 255, 255, 0.02) 40%
+        ),
+        rgba(255, 255, 255, 0.02)
+    `;
+      }
+
+      // Reset the tilt when mouse leaves
+      function resetTilt() {
+        const card = this;
+        const cardInner = card.querySelector(".tilt-card-inner");
+
+        cardInner.style.transform = "rotateX(0deg) rotateY(0deg)";
+        card.style.background = "rgba(255, 255, 255, 0.02)";
+      }
+
+      // Initialize smooth scrolling and snap points
+      function initSmoothScrolling() {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            if (location.pathname !== "/") {
+              // If not on the homepage, adjust href to include base path
+              return;
+            }
+
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            // Clean up the target ID to handle both /# and #
+            const cleanedTarget = targetId.substring(
+              targetId.indexOf("#"),
+              targetId.length
+            );
+            const targetElement = document.querySelector(cleanedTarget);
+            if (targetElement) {
+              const navbarHeight =
+                document.getElementById("navbar")!.offsetHeight;
+              const targetPosition =
+                targetElement.getBoundingClientRect().top +
+                window.pageYOffset -
+                navbarHeight;
+
+              window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Smooth scroll to section when clicking navigation links
+        document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            if (location.pathname !== "/") {
+              // If not on the homepage, adjust href to include base path
+              return;
+            }
+
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            // Clean up the target ID to handle both /# and #
+            const cleanedTarget = targetId.substring(
+              targetId.indexOf("#"),
+              targetId.length
+            );
+            const targetElement = document.querySelector(cleanedTarget);
+            if (targetElement) {
+              // Add active state to clicked link
+              document.querySelectorAll(".nav-links a").forEach((link) => {
+                link.classList.remove("active");
+              });
+              this.classList.add("active");
+
+              // Scroll to the target with a smooth animation
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Update active navigation based on scroll position
+        window.addEventListener("scroll", () => {
+          const scrollPosition = window.scrollY + 100;
+
+          document.querySelectorAll("section").forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute("id");
+
+            if (
+              scrollPosition >= sectionTop &&
+              scrollPosition < sectionTop + sectionHeight
+            ) {
+              document.querySelectorAll(".nav-links a").forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${sectionId}`) {
+                  link.classList.add("active");
+                }
+              });
+            }
+          });
+        });
+      }
+
+      // Initialize custom cursor effect
+      function initCustomCursor() {
+        const cursor = document.createElement("div");
+        cursor.className = "custom-cursor";
+        cursor.style.position = "fixed";
+        cursor.style.width = "20px";
+        cursor.style.height = "20px";
+        cursor.style.borderRadius = "50%";
+        cursor.style.border = "2px solid rgba(66, 198, 235, 0.6)";
+        cursor.style.transform = "translate(-50%, -50%)";
+        cursor.style.pointerEvents = "none";
+        cursor.style.zIndex = "9999";
+        cursor.style.mixBlendMode = "difference";
+        cursor.style.transition = "width 0.2s, height 0.2s, opacity 0.2s";
+
+        const cursorDot = document.createElement("div");
+        cursorDot.className = "cursor-dot";
+        cursorDot.style.position = "fixed";
+        cursorDot.style.width = "5px";
+        cursorDot.style.height = "5px";
+        cursorDot.style.borderRadius = "50%";
+        cursorDot.style.backgroundColor = "rgba(66, 198, 235, 0.9)";
+        cursorDot.style.transform = "translate(-50%, -50%)";
+        cursorDot.style.pointerEvents = "none";
+        cursorDot.style.zIndex = "10000";
+        cursorDot.style.transition = "opacity 0.2s";
+
+        document.body.appendChild(cursor);
+        document.body.appendChild(cursorDot);
+
+        // Update cursor position
+        document.addEventListener("mousemove", (e) => {
+          // Smoother cursor movement with requestAnimationFrame
+          requestAnimationFrame(() => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+
+            // Dot follows immediately for responsiveness
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+          });
+        });
+
+        // Hover effects for interactive elements
+        const interactiveElements = document.querySelectorAll(
+          "a, button, .card, .resource-card, .btn"
+        );
+
+        interactiveElements.forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            cursor.style.width = "40px";
+            cursor.style.height = "40px";
+            cursor.style.borderColor = "rgba(156, 77, 255, 0.6)";
+            cursorDot.style.backgroundColor = "rgba(156, 77, 255, 0.9)";
+          });
+
+          el.addEventListener("mouseleave", () => {
+            cursor.style.width = "20px";
+            cursor.style.height = "20px";
+            cursor.style.borderColor = "rgba(66, 198, 235, 0.6)";
+            cursorDot.style.backgroundColor = "rgba(66, 198, 235, 0.9)";
+          });
+        });
+
+        // Hide cursor when mouse leaves the window
+        document.addEventListener("mouseout", (e) => {
+          if (e.relatedTarget === null) {
+            cursor.style.opacity = "0";
+            cursorDot.style.opacity = "0";
+          }
+        });
+
+        document.addEventListener("mouseover", () => {
+          cursor.style.opacity = "1";
+          cursorDot.style.opacity = "1";
+        });
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </body>
 </html>
